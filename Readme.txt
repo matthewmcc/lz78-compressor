@@ -1,0 +1,16 @@
+Description: Implement LZ78 compression and decompression, with bit-packed phrase numbers. This assignment must be done in pairs, and it is recommended you find a different partner from the previous assignment (use Moodle forum or ask the tutor for help finding a new partner).
+
+Specification: Implement the LZ78 compression and decompression routines according to the following specifications:
+
+Your compressor has two parts: one part (the encoder) takes any data as input and outputs LZ78 tuples (one tuple per line of output), where each tuple is comprised of an integer, corresponding to the phrase number of the longest matching sequence of bytes, followed by the first mismatched byte; the other part (the bit-packer) takes the output of the encoder and packs the phrase numbers into the minimum number of bits (given the size of the code trie), producing as output a bit stream of minimum-length phrase numbers interlaced with the mismatched bytes.
+Your decompressor has two parts: one part (the bit-unpacker) takes binary input as might be produced by the bit-packer and expands it into a stream of tuples (one tuple per line) corresponding to the output produced by an encoder; the other part (the decoder) takes the output of the bit-unpacker and outputs decompressed data identical to what would be provided as input to your LZ78 encoder.
+The output of the decoder, when given the output of the encoder as input, must exactly match the input to the encoder.
+The output of the bit-unpacker, when given the output of the bit-packer as input, must match the input to the bit-packer.
+The encoder must accept any type of input data.
+You must implement your own Trie (or equivalent data structure) to support efficient searches for the longest matching phrase by your encoder. (Note that the decoder does not use a trie.)
+All components (encoder, decoder, packer, unpacker) must accept standard input and produce standard output.
+Create a script program to effect compression, such that it accepts as a commandline argument the name of the file whose contents are data to be compressed, then feeds that data through the encoder+packer and saves the resulting compressed output in a file of the same name as the input but with the extension ".lz78" affixed.
+Create a script program to effect decompression, such that it accepts as a commandline argument the name of a file whose extension is ".lz78" and whose contents are compressed data, then feeds that compressed data through the unpacker+decoder and saves the resulting restored output in a file of the same name as the input but with the extension removed.
+Some large files are provided on the course website for testing purposes, but you should test with as many data files as you can.
+
+Approach: I suggest you get your encoder to work first then build your decoder and test them as a pair. Once this works, turn your attention to building the packer and unpacker. Once all these work correctly, write the scripts needed to carry out the entire compression and decompression procedures. A passing mark is possible even if only your encoder and decoder work, but an "A" or above is only possible if your programs comply with all specifications.
